@@ -103,7 +103,53 @@ int main()
 
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
-    /* add your code here */
+	ListNode *l1 = ll1->head;
+    ListNode *l2 = ll2->head;
+    ListNode *next1 = NULL;
+    ListNode *next2 = NULL;
+
+    while (l1 != NULL && l2 != NULL)
+    {
+        next1 = l1->next;
+        next2 = l2->next;
+
+        l1->next = l2;
+
+        if (next1 == NULL)
+        {
+            l2->next = NULL;
+            break;
+        }
+
+        l2->next = next1;
+
+        l1 = next1;
+        l2 = next2;
+    }
+
+    ll2->head = (next1 == NULL) ? next2 : l2;
+
+	/*
+	int index = 0;
+
+    ListNode *l1 = ll1->head;
+	ListNode *l2 = ll2->head;
+
+	while (l1 != NULL && l2 != NULL)
+	{
+		int value = l2->item;
+
+		if (l1->next != NULL)
+		{
+			insertNode(ll1, ++index, value);
+			removeNode(ll2, 0);
+		}
+
+		l1 = l1->next;
+		l2 = ll2->head;
+		index++;
+	}
+	*/
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -125,7 +171,6 @@ void printList(LinkedList *ll){
 	printf("\n");
 }
 
-
 void removeAllItems(LinkedList *ll)
 {
 	ListNode *cur = ll->head;
@@ -139,7 +184,6 @@ void removeAllItems(LinkedList *ll)
 	ll->head = NULL;
 	ll->size = 0;
 }
-
 
 ListNode *findNode(LinkedList *ll, int index){
 
@@ -194,7 +238,6 @@ int insertNode(LinkedList *ll, int index, int value){
 
 	return -1;
 }
-
 
 int removeNode(LinkedList *ll, int index){
 
