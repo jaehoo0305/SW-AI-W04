@@ -86,7 +86,54 @@ int main()
 
 void moveEvenItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
+	int totalIndex = 0, index = 0;
+
+    ListNode *l = ll->head;
+    ListNode *findLast = ll->head;
+
+    ListNode *backUp = NULL;
+    ListNode *before = NULL;
+
+	while (findLast->next != NULL)
+    {
+        ++totalIndex;
+        findLast = findLast->next;
+    }
+    ListNode *originalTail = findLast;
+
+    while (true)
+    {
+        if (totalIndex > index) break;
+
+		backUp = l->next;
+
+        if (l == originalTail->next) break;
+
+        int value = l->item;
+
+        if (value % 2 == 0)
+        {
+            if (before != NULL)
+            {
+                before->next = l->next;
+            }
+            else
+            {
+                ll->head = backUp;
+            }
+
+            findLast->next = l;
+            l->next = NULL;
+            findLast = l;
+        }
+        else
+        {
+            before = l;
+        }
+
+        ++index;
+		l = backUp;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

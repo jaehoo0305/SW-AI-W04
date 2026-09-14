@@ -94,33 +94,49 @@ void moveOddItemsToBack(LinkedList *ll)
     ListNode *backUp = NULL;
     ListNode *before = NULL;
 
+	while (findLast->next != NULL)
+    {
+        ++totalIndex;
+        findLast = findLast->next;
+    }
+    ListNode *originalTail = findLast;
+
     while (true)
     {
-        if (totalIndex == index) break;
+        if (totalIndex > index) break;
 
-        while (findLast->next != NULL)
-        {
-            ++totalIndex;
-            findLast = findLast->next;
-        }
+		backUp = l->next;
+
+        if (l == originalTail->next) break;
+
+        int value = l->item;
+
+        if (l == originalTail->next) break;
 
         int value = l->item;
 
         if (value % 2 == 1)
         {
-            backUp = l->next;
-
             if (before != NULL)
             {
                 before->next = l->next;
             }
+            else
+            {
+                ll->head = backUp;
+            }
 
             findLast->next = l;
+            l->next = NULL;
+            findLast = l;
+        }
+        else
+        {
+            before = l;
         }
 
         ++index;
-        before = l;
-        l = l->next;
+		l = backUp;
     }
 }
 
