@@ -102,12 +102,44 @@ int main()
 
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
-	/* add your code here */
+	if (ll == NULL || ll->head == NULL) return;
+
+	int totalIndex = 0;
+
+	ListNode *l = ll->head;
+    ListNode *findLast = ll->head;
+
+	while (findLast->next != NULL)
+    {
+        ++totalIndex;
+        findLast = findLast->next;
+	}
+
+	int totalNodes = totalIndex + 1;
+    int front = (totalNodes + 1) / 2;
+    int back = totalNodes - front;
+
+    resultFrontList->head = ll->head;
+    resultFrontList->size = front;
+
+    for (int i = 0; i < front-1; i++)
+    {
+        l = l->next;
+    }
+
+    resultBackList->head = l->next;
+    resultBackList->size = back;
+
+    l->next = NULL;
+
+	ll->head = NULL;
+    ll->size = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-void printList(LinkedList *ll){
+void printList(LinkedList *ll)
+{
 
 	ListNode *cur;
 	if (ll == NULL)
@@ -123,7 +155,6 @@ void printList(LinkedList *ll){
 	printf("\n");
 }
 
-
 void removeAllItems(LinkedList *ll)
 {
 	ListNode *cur = ll->head;
@@ -138,8 +169,8 @@ void removeAllItems(LinkedList *ll)
 	ll->size = 0;
 }
 
-
-ListNode * findNode(LinkedList *ll, int index){
+ListNode * findNode(LinkedList *ll, int index)
+{
 
 	ListNode *temp;
 
@@ -161,7 +192,8 @@ ListNode * findNode(LinkedList *ll, int index){
 	return temp;
 }
 
-int insertNode(LinkedList *ll, int index, int value){
+int insertNode(LinkedList *ll, int index, int value)
+{
 
 	ListNode *pre, *cur;
 
@@ -192,8 +224,8 @@ int insertNode(LinkedList *ll, int index, int value){
 	return -1;
 }
 
-
-int removeNode(LinkedList *ll, int index){
+int removeNode(LinkedList *ll, int index)
+{
 
 	ListNode *pre, *cur;
 
