@@ -86,7 +86,42 @@ int main()
 
 void moveOddItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
+    int totalIndex = 0, index = 0;
+
+    ListNode *l = ll->head;
+    ListNode *findLast = ll->head;
+
+    ListNode *backUp = NULL;
+    ListNode *before = NULL;
+
+    while (true)
+    {
+        if (totalIndex == index) break;
+
+        while (findLast->next != NULL)
+        {
+            ++totalIndex;
+            findLast = findLast->next;
+        }
+
+        int value = l->item;
+
+        if (value % 2 == 1)
+        {
+            backUp = l->next;
+
+            if (before != NULL)
+            {
+                before->next = l->next;
+            }
+
+            findLast->next = l;
+        }
+
+        ++index;
+        before = l;
+        l = l->next;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -108,7 +143,6 @@ void printList(LinkedList *ll){
 	printf("\n");
 }
 
-
 void removeAllItems(LinkedList *ll)
 {
 	ListNode *cur = ll->head;
@@ -122,7 +156,6 @@ void removeAllItems(LinkedList *ll)
 	ll->head = NULL;
 	ll->size = 0;
 }
-
 
 ListNode *findNode(LinkedList *ll, int index){
 
@@ -177,7 +210,6 @@ int insertNode(LinkedList *ll, int index, int value){
 
 	return -1;
 }
-
 
 int removeNode(LinkedList *ll, int index){
 
