@@ -88,12 +88,110 @@ int main()
 
 int moveMaxToFront(ListNode **ptrHead)
 {
-    /* add your code here */
+	ListNode *l = *ptrHead;
+	ListNode *before = *ptrHead;
+
+	ListNode *maxNode = *ptrHead;
+    ListNode *beforeMax = NULL;
+
+	int max = l->item;
+
+	while (l != NULL)
+    {
+        if (max < l->item)
+        {
+            max = l->item;
+            maxNode = l;
+            beforeMax = before; 
+        }
+
+        before = l;
+        l = l->next;
+    }
+
+    if (beforeMax == NULL)
+    {
+        return 0; 
+    }
+
+    beforeMax->next = maxNode->next;
+    maxNode->next = *ptrHead;
+    *ptrHead = maxNode;
+
+    return 0;
+
+	/*
+	ListNode *l = *ptrHead;
+	ListNode *last = *ptrHead;
+	ListNode *before = *ptrHead;
+	ListNode *first = *ptrHead;
+
+	int max = 0, totalIndex;
+
+	while (last != NULL)
+	{
+		if (max < last->item)
+		{
+			max = last->item;
+		}
+		
+        ++totalIndex;
+		last = last->next; 
+	}
+	
+	if (l == *ptrHead && max == l->item) // 맨 처음이면서 Max 근데 이거 문법 어케함
+	{
+		return 0;
+	}
+
+	while (l->item != NULL)
+	{
+		// if (l->item == last->item && max == l->item) // 맨 마지막이면서 Max
+		// {
+		// 	last->next = first;
+		// 	before->next = NULL;
+		// 	//헤드 갱신 어떻게 하더라
+		// }
+
+		// if (max == l->item) // Max
+		// {
+		// 	last->next = first;
+		// 	before->next = l->next;
+		// 	//헤드 갱신 어떻게 하더라
+		// }
+
+		if (max < l->item)
+		{
+			// 맥스 
+			// 맥스 앞 주소 등등 필요 로직
+		}
+
+		if (max == l->item)
+		{
+			last->next = first;
+
+			if (l->item == last->item)
+			{
+				before->next = NULL;
+			}
+			else
+			{
+				before->next = l->next;
+			}
+
+			*ptrHead = l;
+		}
+
+		before = l;
+		l = l->next;
+	}
+	*/
 }
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void printList(LinkedList *ll){
+void printList(LinkedList *ll)
+{
 
 	ListNode *cur;
 	if (ll == NULL)
@@ -110,7 +208,8 @@ void printList(LinkedList *ll){
 	printf("\n");
 }
 
-ListNode * findNode(LinkedList *ll, int index){
+ListNode * findNode(LinkedList *ll, int index)
+{
 
 	ListNode *temp;
 
@@ -132,7 +231,8 @@ ListNode * findNode(LinkedList *ll, int index){
 	return temp;
 }
 
-int insertNode(LinkedList *ll, int index, int value){
+int insertNode(LinkedList *ll, int index, int value)
+{
 
 	ListNode *pre, *cur;
 
@@ -164,8 +264,8 @@ int insertNode(LinkedList *ll, int index, int value){
 	return -1;
 }
 
-
-int removeNode(LinkedList *ll, int index){
+int removeNode(LinkedList *ll, int index)
+{
 
 	ListNode *pre, *cur;
 
