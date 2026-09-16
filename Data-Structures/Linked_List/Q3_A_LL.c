@@ -177,7 +177,8 @@ void moveOddItemsToBack(LinkedList *ll)
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-void printList(LinkedList *ll){
+void printList(LinkedList *ll)
+{
 
 	ListNode *cur;
 	if (ll == NULL)
@@ -208,7 +209,8 @@ void removeAllItems(LinkedList *ll)
 	ll->size = 0;
 }
 
-ListNode *findNode(LinkedList *ll, int index){
+ListNode *findNode(LinkedList *ll, int index)
+{
 
 	ListNode *temp;
 
@@ -230,7 +232,8 @@ ListNode *findNode(LinkedList *ll, int index){
 	return temp;
 }
 
-int insertNode(LinkedList *ll, int index, int value){
+int insertNode(LinkedList *ll, int index, int value)
+{
 
 	ListNode *pre, *cur;
 
@@ -262,7 +265,8 @@ int insertNode(LinkedList *ll, int index, int value){
 	return -1;
 }
 
-int removeNode(LinkedList *ll, int index){
+int removeNode(LinkedList *ll, int index)
+{
 
 	ListNode *pre, *cur;
 

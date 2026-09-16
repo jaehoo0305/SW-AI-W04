@@ -128,18 +128,18 @@ int moveMaxToFront(ListNode **ptrHead)
 
 	int max = 0, totalIndex;
 
-	while (last != NULL)
-	{
-		if (max < last->item)
-		{
-			max = last->item;
-		}
+	// while (last != NULL)
+	// {
+	// 	if (max < last->item)
+	// 	{
+	// 		max = last->item;
+	// 	}
 		
-        ++totalIndex;
-		last = last->next; 
-	}
+    //     ++totalIndex;
+	// 	last = last->next; 
+	// }
 	
-	if (l == *ptrHead && max == l->item) // 맨 처음이면서 Max 근데 이거 문법 어케함
+	if (l == *ptrHead && max == l->item) // 맨 처음이면서 Max 
 	{
 		return 0;
 	}

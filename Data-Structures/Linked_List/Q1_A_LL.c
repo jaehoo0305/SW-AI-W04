@@ -91,21 +91,21 @@ int insertSortedLL(LinkedList *ll, int item)
 {
 	int index = 0;
 
-    ListNode *cur = ll->head;
+    ListNode *l = ll->head;
  
-    while (cur != NULL)
+    while (l != NULL)
     {
-        if (cur->item == item)
+        if (l->item == item)
 		{
-            return -1;
+            return 1;
 		}
 
-        if (cur->item > item)
+        if (l->item > item)
 		{
             break;
 		}
 
-        cur = cur->next;
+        l = l->next;
         index++;
     }
 
@@ -141,7 +141,8 @@ int insertSortedLL(LinkedList *ll, int item)
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-void printList(LinkedList *ll){
+void printList(LinkedList *ll)
+{
 
     ListNode *cur;
     if (ll == NULL)
@@ -172,7 +173,8 @@ void removeAllItems(LinkedList *ll)
     ll->size = 0;
 }
 
-ListNode *findNode(LinkedList *ll, int index){
+ListNode *findNode(LinkedList *ll, int index)
+{
 
     ListNode *temp;
 
@@ -194,7 +196,8 @@ ListNode *findNode(LinkedList *ll, int index){
     return temp;
 }
 
-int insertNode(LinkedList *ll, int index, int value){
+int insertNode(LinkedList *ll, int index, int value)
+{
 
     ListNode *pre, *cur;
 
@@ -226,7 +229,8 @@ int insertNode(LinkedList *ll, int index, int value){
     return -1;
 }
 
-int removeNode(LinkedList *ll, int index){
+int removeNode(LinkedList *ll, int index)
+{
 
     ListNode *pre, *cur;
 

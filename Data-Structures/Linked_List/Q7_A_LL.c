@@ -87,12 +87,26 @@ int main()
 
 void RecursiveReverse(ListNode **ptrHead)
 {
-	/* add your code here */
+    if (*ptrHead == NULL || (*ptrHead)->next == NULL)
+	{
+        return;
+    }
+
+    ListNode *first = *ptrHead;
+    ListNode *rest = first->next;
+
+    RecursiveReverse(&rest);
+
+    first->next->next = first;
+    first->next = NULL;
+
+    *ptrHead = rest;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void printList(LinkedList *ll){
+void printList(LinkedList *ll)
+{
 
 	ListNode *cur;
 	if (ll == NULL)
@@ -109,7 +123,8 @@ void printList(LinkedList *ll){
 	printf("\n");
 }
 
-ListNode * findNode(LinkedList *ll, int index){
+ListNode * findNode(LinkedList *ll, int index)
+{
 
 	ListNode *temp;
 
@@ -131,7 +146,8 @@ ListNode * findNode(LinkedList *ll, int index){
 	return temp;
 }
 
-int insertNode(LinkedList *ll, int index, int value){
+int insertNode(LinkedList *ll, int index, int value)
+{
 
 	ListNode *pre, *cur;
 
@@ -163,8 +179,8 @@ int insertNode(LinkedList *ll, int index, int value){
 	return -1;
 }
 
-
-int removeNode(LinkedList *ll, int index){
+int removeNode(LinkedList *ll, int index)
+{
 
 	ListNode *pre, *cur;
 
